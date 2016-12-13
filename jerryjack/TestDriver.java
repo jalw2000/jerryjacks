@@ -11,12 +11,18 @@ public class TestDriver {
 	}
 	
 	public static void main(String[] args) {
-		deck stddeck = new deck();
-		cardPrinter cp = new cardPrinter();
-		stddeck.shuffle();
 		
-		for (int i=0; i < 52; i++)
-			cp.printCardSTD(stddeck.crds[i]);
+		showHeader();
+		System.out.println("");
 		
+		
+		dealer jerryJacksDealer = new dealer();
+		player challenger1 = new player();
+		
+		challenger1.setName("Joshua Wilder");
+		jerryJacksDealer.dealCards(challenger1,2);
+		
+		System.out.println("\nShowing the hand for player1");
+		challenger1.showHand();
 	}
 }

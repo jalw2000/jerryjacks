@@ -17,4 +17,14 @@ public class player {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public void addCard2Hand(cards card) {
+		hand.add(card);
+	}
+	
+	public void showHand() {
+		cardPrinter cp = new cardPrinter();
+		for (int i=0; i < hand.size(); i++)
+			cp.printCardSTD(hand.get(i));
+	}
 }

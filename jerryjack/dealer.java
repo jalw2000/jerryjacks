@@ -1,37 +1,40 @@
 package jerryjack;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class dealer {
 	private String name;
-	//private ArrayList<cards> hand;
-	private ArrayList<deck> decks;
-	private int deckCount;
+	private ArrayList<cards> hand;
+	public Stack<cards> dealerDeck;
 	
+	/**
+	 * default constructor
+	 */
 	public dealer() {
-		this.name = "Computer_Dealer";
-		decks = new ArrayList<deck>();
-		//hand = new ArrayList<cards>();
+		this.name = "Dealer";
+		deck dck = new deck();
+		dck.shuffle();
 		
-		//start with one deck.
-		deck dk = new deck();
-		decks.add(dk); 
-		setDeckCount(1);
+		dealerDeck = new Stack<cards>();
+		for (int i=51; i >=0; i--){
+			dealerDeck.push(dck.crds[i]);					
+		}
+		
+		hand = new ArrayList<cards>();
 	}
-
-	public int getDeckCount() {
-		return deckCount;
+	
+	public void dealCard(player aPlayer) {
+		aPlayer.addCard2Hand( dealerDeck.pop());
 	}
-
-	public void setDeckCount(int deckCount) {
-		this.deckCount = deckCount;
+	
+	public void dealCards(player aPlayer, int numCards) {
+		for (int i=0; i < numCards; i++)
+			aPlayer.addCard2Hand( dealerDeck.pop());
 	}
-
-	public String getName() {
-		return name;
+	
+	public void addCard2Hand(cards card) {
+		this.hand.add(card);
 	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
+	
 }
