@@ -12,8 +12,11 @@ public class TestDriver {
 	
 	public static void main(String[] args) {
 		deck stddeck = new deck();
-		player psr1 = new player();
+		cardPrinter cp = new cardPrinter();
+		stddeck.shuffle();
 		
+		for (int i=0; i < 52; i++)
+			cp.printCardSTD(stddeck.crds[i]);
 		
 	}
 }

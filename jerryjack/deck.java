@@ -1,5 +1,7 @@
 package jerryjack;
 
+import java.util.Random;
+
 public class deck {
 	private final int STANDARD_DECK = 52;
 	public cards[] crds;
@@ -34,7 +36,44 @@ public class deck {
 				
 				cards temp = new cards();
 				temp.setCard(cardSuits[i], cardRanks[j], rankvalue);
-				this.crds[index++]=temp; //there was a bug, that I can't assigned alias of the same object to each array location.
-			}//end for
+				this.crds[index++]=temp; 
+			}
 	}//end constructor
+	
+	public void shuffle() { 
+		int srcatch[] = new int[STANDARD_DECK];
+		cards cds[] = new cards[STANDARD_DECK];
+		
+		for (int k=0; k < STANDARD_DECK; k++) {
+			srcatch[k] = k;
+			cds[k] = new cards();
+		}
+		
+		shuffleArray(srcatch);
+		
+		int index=0;
+		for (int k=0; k < STANDARD_DECK; k++) {
+			index=srcatch[k];
+			cds[k]=this.crds[index];
+		}
+		this.crds = cds;
+	}
+	
+	/*
+	 * SOURCE - http://stackoverflow.com/questions/1519736/random-shuffling-of-an-array
+	 * DATE - 13DEC16
+	 */
+	private void shuffleArray(int[] array)
+	{
+	    int index, temp;
+	    Random random = new Random();
+	    for (int i = array.length - 1; i > 0; i--)
+	    {
+	        index = random.nextInt(i + 1);
+	        temp = array[index];
+	        array[index] = array[i];
+	        array[i] = temp;
+	    }
+	}
+	
 }//end class
